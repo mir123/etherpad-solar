@@ -1,0 +1,16 @@
+{
+    "parts": [
+      {
+        "name": "main",
+        "client_hooks": {
+          
+          "aceSetAuthorStyle": "ep_solar/static/js/index:diayNoche"
+          
+        },
+        "hooks": {
+          "loadSettings": "ep_solar/index"
+        }
+      }
+    ]
+  }
+  
