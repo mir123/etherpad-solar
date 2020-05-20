@@ -14,5 +14,13 @@
     "elevation"
   ],
   "author": "Mir Rodriguez Lombardo",
-  "license": "GPL-3.0-or-later"
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mir123/etherpad-solar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mir123/etherpad-solar/issues"
+  },
+  "homepage": "https://github.com/mir123/etherpad-solar#readme"
 }
