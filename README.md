@@ -2,7 +2,7 @@
 
 # About
 
-A still experimental [Etherpad-lite](https://github.com/ether/etherpad-lite) plugin that changes the skin variant according to the position of the sun at a given location, so you can make your skin go dark at night.
+A still experimental [Etherpad](https://github.com/ether/etherpad-lite) plugin that changes the skin variant according to the position of the sun at a given location, so you can make your skin go dark at night.
 
 Still in very early stages (this is my first Node project), but open to suggestions and pull requests!
 
