@@ -21,7 +21,7 @@ exports.clientVars = function (hook, context, callback) {
         : false;
     if (areParamsOk === false) {
       console.error(
-        'ep_solar.lat and ep_solar.lon must be in decimal degrees, latitude must be between -90 adn 90 and longitude between -180 and 180.'
+        'ep_solar.lat and ep_solar.lon must be in decimal degrees, latitude must be between -90 and 90 and longitude between -180 and 180.'
       );
       return callback({
         ep_solar_settings: false,

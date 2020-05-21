@@ -17,7 +17,7 @@ exports.diayNoche = function (hook_name, args, cb) {
   // }
 
   if (clientVars.lat) {
-    // Our settings are good
+    // Our settings are ok
 
     var latitude = clientVars.lat;
     var longitude = clientVars.lon;
