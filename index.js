@@ -24,14 +24,13 @@ exports.clientVars = function (hook, context, callback) {
         'ep_solar.lat and ep_solar.lon must be in decimal degrees, latitude must be between -90 adn 90 and longitude between -180 and 180.'
       );
       return callback({
-        wronglatlong: true,
+        ep_solar_settings: false,
       });
     } else {
       // return the setting to the clientVars, sending the value
       return callback({
         lat: settings.ep_solar.lat,
         lon: settings.ep_solar.lon,
-        okis: areParamsOk,
       });
     }
   } else {
