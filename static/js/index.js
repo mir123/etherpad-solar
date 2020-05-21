@@ -1,78 +1,89 @@
 exports.diayNoche = function (hook_name, args, cb) {
   // The client-side hook aceSetAuthorStyle works for this because all iframes are ready for manipulation
 
-  // Set your location here. It will be used to determine the elevation of the sun at current time.
-  // Use NOAA convention - for Latitude: North is negative, South is positive, Longitude: West is positive, East is negative
+  // Set your location in settings.json. It will be used to determine the elevation of the sun at current time.
+  // Use NOAA convention - for Latitude: North is negative, South is positive, Longitude: West is positive, East is negative. Examples:
 
-  // Mexico City
-  var latitude = 19.43;
-  var longitude = 99.13;
+  // For Mexico City:
+  // ,"ep_solar": {
+  //  "lat": 19.43,
+  //  "lon": 99.13
+  // }
+  //
+  // For Sydney:
+  // ,"ep_solar": {
+  //  "lat": -34.87,
+  //  "lon": -151.2
+  // }
 
-  //Delhi
-  //var lat = 28.5;
-  //var lon = -77.25;
+  if (clientVars.lat) {
+    // Our settings are good
 
-  // Change settings here for night and day combinations. Use http://youretherpad:9001/p/test#skinvariantsbuilder to check the various combinations
+    var latitude = clientVars.lat;
+    var longitude = clientVars.lon;
 
-  var nightColors = {
-    toolbar: 'dark',
-    background: 'super-dark',
-    editor: 'dark',
-  };
-  var dayColors = {
-    toolbar: 'super-light',
-    background: 'light',
-    editor: 'super-light',
-  };
+    // Change settings here for night and day combinations. Use http://youretherpad:9001/p/test#skinvariantsbuilder to check the various combinations
 
-  // Define what elevation counts as "daylight". Civil twilight/dawn occurs when the elevation of the sun is above -6, Nautical is above -12, Astronomical above -18
-  // See https://www.timeanddate.com/astronomy/different-types-twilight.html
+    var nightColors = {
+      toolbar: 'dark',
+      background: 'super-dark',
+      editor: 'dark',
+    };
+    var dayColors = {
+      toolbar: 'super-light',
+      background: 'light',
+      editor: 'super-light',
+    };
 
-  var dayElevation = -6; // Civil
+    // Define what elevation counts as "daylight". Civil twilight/dawn occurs when the elevation of the sun is above -6, Nautical is above -12, Astronomical above -18
+    // See https://www.timeanddate.com/astronomy/different-types-twilight.html
 
-  ////////////////////////////////////////////////
+    var dayElevation = -6; // Civil
 
-  elevation = solarElevation(latitude, longitude);
+    ////////////////////////////////////////////////
 
-  luz = elevation > dayElevation ? 'day' : 'night';
+    elevation = solarElevation(latitude, longitude);
 
-  if (luz === 'day') {
-    var colorm = dayColors;
-  } else {
-    var colorm = nightColors;
-  }
+    luz = elevation > dayElevation ? 'day' : 'night';
 
-  var containers = ['editor', 'background', 'toolbar'];
-  var colors = ['super-light', 'light', 'dark', 'super-dark'];
+    if (luz === 'day') {
+      var colorm = dayColors;
+    } else {
+      var colorm = nightColors;
+    }
 
-  updateSkinTimeDay();
+    var containers = ['editor', 'background', 'toolbar'];
+    var colors = ['super-light', 'light', 'dark', 'super-dark'];
 
-  function updateSkinTimeDay() {
-    var domsToUpdate = [
-      $('html'),
-      $('iframe[name=ace_outer]').contents().find('html'),
-      $('iframe[name=ace_outer]')
-        .contents()
-        .find('iframe[name=ace_inner]')
-        .contents()
-        .find('html'),
-    ];
-    colors.forEach(function (color) {
-      containers.forEach(function (container) {
-        domsToUpdate.forEach(function (el) {
-          el.removeClass(color + '-' + container);
+    updateSkinTimeDay();
+
+    function updateSkinTimeDay() {
+      var domsToUpdate = [
+        $('html'),
+        $('iframe[name=ace_outer]').contents().find('html'),
+        $('iframe[name=ace_outer]')
+          .contents()
+          .find('iframe[name=ace_inner]')
+          .contents()
+          .find('html'),
+      ];
+      colors.forEach(function (color) {
+        containers.forEach(function (container) {
+          domsToUpdate.forEach(function (el) {
+            el.removeClass(color + '-' + container);
+          });
         });
       });
-    });
 
-    var new_classes = [];
-    containers.forEach(function (container) {
-      new_classes.push(colorm[container] + '-' + container);
-    });
+      var new_classes = [];
+      containers.forEach(function (container) {
+        new_classes.push(colorm[container] + '-' + container);
+      });
 
-    domsToUpdate.forEach(function (el) {
-      el.addClass(new_classes.join(' '));
-    });
+      domsToUpdate.forEach(function (el) {
+        el.addClass(new_classes.join(' '));
+      });
+    }
   }
 };
 

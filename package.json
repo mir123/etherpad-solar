@@ -1,6 +1,6 @@
 {
   "name": "ep_solar",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Change Etherpad-lite skin variant according to sun position",
   "main": "index.js",
   "scripts": {
