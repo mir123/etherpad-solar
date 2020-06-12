@@ -4,15 +4,13 @@
 
 A still experimental [Etherpad](https://github.com/ether/etherpad-lite) plugin that changes the skin variant according to the position of the sun at a given location, so you can make your skin go dark at night.
 
-Still in very early stages (this is my first Node project), but open to suggestions and pull requests!
-
 ## Requirements
 
-Tested with Etherpad 1.8.3 running in Node.js v12.16.3.
+Tested with Etherpad 1.8.3 running in Node.js v12.16.3. Fixed bug that prevented minifying.
 
 ## Install
 
-Not yet in Etherpad plugin repository, so create an ep_solar folder manually in your node_modules and copy the contents of this repository. Set your position (latitude and longitude in decimal degrees, using NOAA nonstandard negative longitude for west, positive for east) in `settings.json`. For example:
+Set your position (latitude and longitude in decimal degrees, using NOAA nonstandard negative longitude for west, positive for east) in `settings.json`. For example:
 
 Mexico City:
 
